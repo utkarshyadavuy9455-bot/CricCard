@@ -2,7 +2,7 @@
 /* CRICCARD — Live Match Centre for GitHub Pages
    IMPORTANT: browser JavaScript is public. Rotate the key previously shared.
    This file intentionally contains a placeholder, not your exposed key. */
-const OPENCRICKET_KEY = "PASTE_ROTATED_API_KEY_HERE";
+const OPENCRICKET_KEY = "oc_live_Zp7JCdgwlq5ZDYehwE5EqTmLnGIx33Ny";
 const OPENCRICKET_URL = "https://opencricketapi.com/v1/live";
 const SCORECARD_URL = "https://opencricketapi.com/v1/matches/";
 const $ = (s, r = document) => r.querySelector(s);
