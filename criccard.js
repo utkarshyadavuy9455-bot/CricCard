@@ -1,4 +1,3 @@
-
 "use strict";
 
 const API_URL = "https://criccard.vercel.app/api/live";
@@ -62,18 +61,18 @@ function addStyles() {
     .cc-panel {
       width:min(850px,100%); max-height:94vh; overflow:auto;
       padding:20px; border-radius:20px; box-sizing:border-box;
-      background:#0d2820; color:#f1fff6;
-      border:1px solid #67f0a355;
+      background:#102b35; color:#effcff;
+      border:1px solid #06b6d455;
       box-shadow:0 20px 80px #0009;
     }
     .cc-panel * { box-sizing:border-box; }
     .cc-close {
       float:right; padding:9px 13px; border-radius:50%;
-      border:1px solid #ffffff30; background:#163e2d;
+      border:1px solid #ffffff30; background:#164653;
       color:white; cursor:pointer; font-size:18px;
     }
-    .cc-status { color:#67f0a3; font-weight:800; }
-    .cc-muted { color:#a5c2b2; font-size:13px; }
+    .cc-status { color:#06b6d4; font-weight:800; }
+    .cc-muted { color:#a9cbd2; font-size:13px; }
     .cc-team {
       display:flex; align-items:center; gap:12px;
       padding:12px; margin:9px 0;
@@ -86,10 +85,10 @@ function addStyles() {
       padding:9px; background:#ffffff08; border-radius:8px;
       overflow-wrap:anywhere;
     }
-    .cc-section-title { margin:24px 0 10px; color:#67f0a3; }
+    .cc-section-title { margin:24px 0 10px; color:#06b6d4; }
     .cc-innings-select {
       width:100%; padding:12px; margin:8px 0 14px;
-      background:#163e2d; color:white; border:1px solid #67f0a355;
+      background:#164653; color:white; border:1px solid #06b6d455;
       border-radius:10px; font-size:15px;
     }
     .cc-table-wrap { overflow-x:auto; margin:10px 0 20px; }
@@ -101,28 +100,34 @@ function addStyles() {
       padding:10px 8px; text-align:left;
       border-bottom:1px solid #ffffff16;
     }
-    .cc-table th { color:#a5c2b2; font-weight:600; }
+    .cc-table th { color:#a9cbd2; font-weight:600; }
     .cc-table td.cc-num, .cc-table th.cc-num { text-align:right; }
     .cc-table tr.cc-total td {
-      font-weight:800; color:#67f0a3;
+      font-weight:800; color:#06b6d4;
       background:#ffffff08;
     }
-    .cc-dismissal { color:#a5c2b2; font-size:12px; }
+    .cc-dismissal { color:#a9cbd2; font-size:12px; }
     .cc-note {
       padding:12px; border-radius:10px;
-      background:#ffffff08; color:#d6eadf;
+      background:#ffffff08; color:#d9f0f4;
     }
     .cc-tabs {
       display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;
     }
     .cc-tab {
       padding:9px 13px; border-radius:9px;
-      color:#eafff1; background:#163e2d;
+      color:#eafcff; background:#164653;
       border:1px solid #ffffff20; cursor:pointer;
     }
-    .cc-tab.active { background:#176b45; border-color:#67f0a3; }
+    .cc-tab.active {
+      background:#087e98;
+      border-color:#06b6d4;
+      color:#ffffff;
+    }
     .cc-clickable { cursor:pointer; }
-    .cc-clickable:focus-visible { outline:2px solid #67f0a3; }
+    .cc-clickable:focus-visible {
+      outline:2px solid #06b6d4;
+    }
     @media(max-width:480px) {
       .cc-panel { padding:14px; border-radius:15px; }
       .cc-team { padding:9px; }
@@ -316,7 +321,6 @@ async function loadScorecard(panel, m) {
 
     if (payload.error) throw new Error(payload.error);
 
-    // Proxy response: { providerStatus, data: { status, data: [...] } }
     const provider = payload.data;
     const innings = Array.isArray(provider?.data) ? provider.data : [];
 
@@ -335,7 +339,7 @@ async function loadScorecard(panel, m) {
     const content = el("div", "cc-innings-content");
 
     innings.forEach((inning, index) => {
-      const option = el("option", "", 
+      const option = el("option", "",
         "Innings " + (inning.inning_number || index + 1) +
         " — " + (inning.name || "Team") +
         " (" + (inning.score ?? "—") + "/" +
@@ -543,4 +547,3 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLiveMatches();
   window.setInterval(loadLiveMatches, 30000);
 });
-    
