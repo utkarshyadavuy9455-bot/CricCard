@@ -1,122 +1,200 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="cZJ3co6WBtHTHWCtKc1SK1ISJc1H_taSV3ieMicu2f8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071b16">
-  <meta name="description" content="CricCard brings cricket fans match information, scorecards, fixtures and cricket updates in one place.">
-  <title>CricCard - Cricket Scores & Match Centre</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #07120f;
-      --panel: #10221b;
-      --green: #b6f36b;
-      --muted: #a6b8ad;
-      --line: #294035;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: #f5faf6;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; }
-    .wrap { max-width: 1050px; margin: auto; padding: 0 18px; }
-    header {
-      border-bottom: 1px solid var(--line);
-      background: #091813;
-    }
-    .nav {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-    .logo { font-size: 25px; font-weight: 900; letter-spacing: -1px; }
-    .logo span { color: var(--green); }
-    nav { display: flex; gap: 17px; font-size: 13px; color: var(--muted); }
-    nav a:hover { color: var(--green); }
-    .hero { padding: 42px 0 28px; }
-    .eyebrow { color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: 2px; }
-    h1 { font-size: clamp(32px, 7vw, 52px); line-height: 1.06; margin: 12px 0; letter-spacing: -1.8px; }
-    .intro { color: var(--muted); max-width: 560px; line-height: 1.7; font-size: 15px; }
-    .featured {
-      margin-top: 25px; padding: 23px;
-      border: 1px solid #35513e; border-radius: 20px;
-      background: linear-gradient(130deg, #183a29, #10221b 75%);
-    }
-    .featured-top, .section-head, .team, .scoreline {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
-    .pill {
-      display: inline-block; border-radius: 30px;
-      padding: 6px 10px; background: #2a4934;
-      color: var(--green); font-size: 11px; font-weight: 800;
-    }
-    .demo { color: #f5d68b; font-size: 11px; }
-    .teams { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 25px 0; }
-    .team { justify-content: flex-start; font-size: 16px; font-weight: 800; }
-    .flag {
-      width: 39px; height: 39px; display: grid; place-items: center;
-      background: #274638; border-radius: 12px; font-size: 22px;
-    }
-    .score { font-size: 19px; font-weight: 900; margin-top: 10px; }
-    .sub { color: var(--muted); font-size: 12px; margin-top: 5px; }
-    .note { color: var(--muted); font-size: 12px; line-height: 1.6; }
-    .section { padding: 25px 0; }
-    .section-head { margin-bottom: 17px; }
-    h2 { font-size: 22px; margin: 0; letter-spacing: -.5px; }
-    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .card {
-      background: var(--panel); border: 1px solid var(--line);
-      padding: 18px; border-radius: 17px;
-    }
-    .card h3 { font-size: 16px; margin: 13px 0; }
-    .card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
-    .btn {
-      display: inline-block; background: var(--green); color: #102016;
-      padding: 11px 15px; border: 0; border-radius: 10px;
-      font-weight: 800; font-size: 13px;
-    }
-    .btn.secondary { background: #20392d; color: white; }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .filter {
-      padding: 9px 13px; border: 1px solid var(--line);
-      background: var(--panel); color: white; border-radius: 30px;
-    }
-    .filter.active { background: var(--green); color: #102016; }
-    .hidden { display: none; }
-    .score-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .score-table th, .score-table td {
-      padding: 13px 8px; text-align: left; border-bottom: 1px solid var(--line);
-    }
-    .score-table th { color: var(--muted); font-weight: 600; }
-    .footer { border-top: 1px solid var(--line); margin-top: 25px; padding: 25px 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
-    @media(max-width: 520px) {
-      .nav { align-items: flex-start; flex-direction: column; padding: 15px 0; }
-      nav { width: 100%; gap: 0; justify-content: space-between; }
-      .hero { padding-top: 30px; }
-      .featured { padding: 17px; }
-      .cards { grid-template-columns: 1fr; }
-      .team { font-size: 13px; }
-      .score { font-size: 17px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071510">
+<meta name="description" content="CricCard — a modern cricket hub for match cards, scorecard previews, fixtures and cricket updates.">
+<meta name="google-site-verification" content="cZJ3co6WBtHTHWCtKc1SK1ISJc1H_taSV3ieMicu2f8">
+<title>CricCard — Your Cricket Match Centre</title>
+
+<style>
+:root {
+  --bg:#071510;
+  --panel:#0e2119;
+  --panel2:#13291f;
+  --green:#b9ff66;
+  --text:#f4f8f2;
+  --muted:#9bb0a1;
+  --border:#294235;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 85% 0%,#173c2b 0%,transparent 38%),
+    var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+}
+a { color:inherit;text-decoration:none; }
+button { font:inherit;cursor:pointer; }
+.wrap { width:min(1120px,92%);margin:auto; }
+header {
+  border-bottom:1px solid var(--border);
+  background:#071510eF;
+}
+.nav {
+  min-height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;
+}
+.brand { display:flex;align-items:center;gap:10px;font-weight:900;font-size:23px; }
+.logo {
+  display:grid;place-items:center;width:42px;height:42px;
+  border-radius:14px;background:var(--green);color:#102015;
+  font-size:21px;
+}
+.brand span { color:var(--green); }
+.navlinks { display:flex;gap:22px;color:var(--muted);font-size:14px; }
+.navlinks a:hover { color:var(--green); }
+.demo-pill {
+  display:inline-flex;align-items:center;gap:7px;
+  background:#382b15;color:#ffd68a;border:1px solid #6d5125;
+  padding:7px 11px;border-radius:999px;font-size:11px;
+  font-weight:850;letter-spacing:.4px;
+}
+.dot { width:7px;height:7px;border-radius:50%;background:#ffca64; }
+.hero { padding:48px 0 30px; }
+.eyebrow {
+  color:var(--green);font-size:12px;font-weight:850;
+  letter-spacing:2px;text-transform:uppercase;
+}
+h1 {
+  font-size:clamp(35px,7vw,64px);line-height:1.04;
+  letter-spacing:-2px;margin:13px 0 16px;max-width:720px;
+}
+h1 span { color:var(--green); }
+.lead { color:var(--muted);line-height:1.7;max-width:620px;font-size:16px; }
+.hero-actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:25px; }
+.btn {
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;border:1px solid var(--border);border-radius:12px;
+  padding:12px 17px;font-weight:800;font-size:14px;
+}
+.btn-primary { background:var(--green);color:#102015;border-color:var(--green); }
+.btn-secondary { background:var(--panel); }
+.btn:hover { transform:translateY(-1px); }
+.notice {
+  margin:16px 0 30px;padding:14px 16px;border-radius:13px;
+  border:1px solid #655027;background:#211e12;color:#e9d9b1;
+  font-size:13px;line-height:1.6;
+}
+.notice strong { color:#ffdc87; }
+.section { padding:22px 0 32px; }
+.section-head {
+  display:flex;justify-content:space-between;align-items:end;
+  gap:12px;flex-wrap:wrap;margin-bottom:18px;
+}
+h2 { margin:0;font-size:clamp(23px,4vw,30px);letter-spacing:-.6px; }
+.sub { margin:7px 0 0;color:var(--muted);font-size:14px;line-height:1.6; }
+.match-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px; }
+.match-card {
+  border:1px solid var(--border);border-radius:19px;
+  background:linear-gradient(150deg,#142b20,#0c1c15);
+  padding:19px;min-width:0;transition:transform .2s,border-color .2s;
+}
+.match-card:hover { transform:translateY(-3px);border-color:#64864e; }
+.card-top { display:flex;justify-content:space-between;align-items:center;gap:8px; }
+.tournament { font-size:11px;color:var(--muted);font-weight:750; }
+.tag {
+  font-size:10px;font-weight:900;letter-spacing:.5px;
+  padding:5px 8px;border-radius:7px;background:#27372c;color:#dce9dd;
+}
+.tag-demo { background:#382b15;color:#ffdc87; }
+.teams { display:grid;gap:15px;margin:23px 0; }
+.team { display:flex;align-items:center;gap:12px;min-width:0; }
+.flag {
+  display:grid;place-items:center;width:43px;height:43px;flex-shrink:0;
+  background:#20392b;border:1px solid #365340;border-radius:13px;font-size:24px;
+}
+.team-name { font-weight:850; }
+.team-code { color:var(--muted);font-size:11px;margin-top:3px; }
+.score { margin-left:auto;text-align:right;font-size:14px;font-weight:800; }
+.score small { display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px; }
+.card-foot { border-top:1px solid var(--border);padding-top:13px;display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:11px; }
+.filters { display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px; }
+.filter {
+  padding:9px 14px;border-radius:999px;background:var(--panel);
+  color:var(--muted);border:1px solid var(--border);font-size:12px;font-weight:800;
+}
+.filter.active { background:var(--green);color:#102015;border-color:var(--green); }
+.empty {
+  display:none;padding:24px;border:1px dashed var(--border);
+  border-radius:14px;color:var(--muted);text-align:center;
+}
+.two-col { display:grid;grid-template-columns:1.15fr .85fr;gap:17px; }
+.panel {
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:18px;padding:20px;min-width:0;
+}
+.panel-title { display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px; }
+.panel-title h3 { margin:0;font-size:17px; }
+.fixture {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 0;border-bottom:1px solid var(--border);
+}
+.fixture:last-child { border-bottom:0;padding-bottom:0; }
+.fixture-info { min-width:0; }
+.fixture-info strong { display:block;font-size:13px; }
+.fixture-info small { display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5; }
+.fixture-time {
+  flex-shrink:0;text-align:right;font-size:11px;font-weight:800;color:var(--green);
+}
+.mini-label { color:var(--muted);font-size:10px;margin-top:5px; }
+.score-preview { display:grid;gap:13px; }
+.score-line {
+  display:flex;justify-content:space-between;gap:10px;
+  padding:13px;background:var(--panel2);border-radius:11px;font-size:13px;
+}
+.score-line span:last-child { font-weight:850; }
+.score-note { color:var(--muted);font-size:12px;line-height:1.7;margin:0; }
+.feature-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+.feature {
+  border:1px solid var(--border);background:var(--panel);
+  border-radius:16px;padding:18px;
+}
+.feature-icon { font-size:25px; }
+.feature h3 { font-size:15px;margin:12px 0 7px; }
+.feature p { color:var(--muted);font-size:12px;line-height:1.7;margin:0; }
+footer { border-top:1px solid var(--border);margin-top:25px;padding:25px 0 35px; }
+.footer-row { display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap; }
+footer p { margin:7px 0;color:var(--muted);font-size:12px;line-height:1.7; }
+footer a { color:var(--green); }
+[hidden] { display:none!important; }
+
+@media(max-width:800px) {
+  .match-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .two-col { grid-template-columns:1fr; }
+  .navlinks { gap:12px; }
+}
+@media(max-width:540px) {
+  .nav { min-height:64px; }
+  .navlinks { gap:12px;font-size:12px; }
+  .navlinks a:nth-child(3) { display:none; }
+  .brand { font-size:20px; }
+  .logo { width:36px;height:36px; }
+  .hero { padding-top:35px; }
+  h1 { letter-spacing:-1.4px; }
+  .match-grid { grid-template-columns:1fr; }
+  .match-card { padding:17px; }
+  .feature-grid { grid-template-columns:1fr; }
+  .section { padding-top:17px; }
+}
+</style>
 </head>
+
 <body>
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#">Cric<span>Card</span> 🏏</a>
-    <nav>
+    <a class="brand" href="#" aria-label="CricCard homepage">
+      <span class="logo">🏏</span>
+      Cric<span>Card</span>
+    </a>
+    <nav class="navlinks" aria-label="Main navigation">
       <a href="#matches">Matches</a>
       <a href="#fixtures">Fixtures</a>
-      <a href="#scorecard">Scorecard</a>
       <a href="#about">About</a>
     </nav>
   </div>
@@ -124,122 +202,230 @@
 
 <main class="wrap">
   <section class="hero">
-    <div class="eyebrow">YOUR CRICKET MATCH CENTRE</div>
-    <h1>Every match.<br>Every moment.</h1>
-    <p class="intro">
-      Discover cricket fixtures, match information and scorecards
-      with CricCard. Your game, all in one place.
+    <div class="eyebrow">Your cricket companion</div>
+    <h1>Every match.<br>One <span>destination.</span></h1>
+    <p class="lead">
+      Explore cricket match cards, scorecard previews and fixture information
+      in one clean, mobile-friendly cricket hub.
     </p>
-
-    <div class="featured">
-      <div class="featured-top">
-        <span class="pill">FEATURED MATCH</span>
-        <span class="demo">Illustrative preview</span>
-      </div>
-      <h2 style="margin-top:20px">The Cricket Showdown</h2>
-      <p class="note">Example match card · Not a live fixture</p>
-      <div class="teams">
-        <div>
-          <div class="team"><span class="flag">🇮🇳</span> India</div>
-          <div class="score">— / —</div>
-          <div class="sub">Score unavailable</div>
-        </div>
-        <div>
-          <div class="team"><span class="flag">🇵🇰</span> Pakistan</div>
-          <div class="score">— / —</div>
-          <div class="sub">Score unavailable</div>
-        </div>
-      </div>
-      <p class="note">Connect a verified cricket data source to display actual scores.</p>
-      <a class="btn" href="#matches">Explore match centre ↗</a>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#matches">🏏 Explore matches <span>→</span></a>
+      <a class="btn btn-secondary" href="#fixtures">View fixtures ↓</a>
     </div>
   </section>
+
+  <div class="notice">
+    <strong>⚠ DEMO MODE — SCORES ARE NOT LIVE.</strong>
+    Match cards and scores on this version are illustrative examples, not
+    real-time results or confirmed fixtures. Live data will be added only
+    when a reliable cricket data source is connected.
+  </div>
 
   <section class="section" id="matches">
     <div class="section-head">
-      <h2>Match Centre</h2>
-      <span class="pill">SCORE UPDATES COMING SOON</span>
+      <div>
+        <div class="eyebrow">Match centre</div>
+        <h2>Popular Matches</h2>
+        <p class="sub">Explore sample match cards and preview the layout.</p>
+      </div>
+      <span class="demo-pill"><span class="dot"></span> DEMO DATA</span>
     </div>
-    <div class="filters">
-      <button class="filter active" data-filter="all">All matches</button>
-      <button class="filter" data-filter="international">International</button>
-      <button class="filter" data-filter="league">Leagues</button>
+
+    <div class="filters" role="group" aria-label="Filter sample matches">
+      <button class="filter active" data-filter="all" aria-pressed="true">All matches</button>
+      <button class="filter" data-filter="live" aria-pressed="false">Live</button>
+      <button class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+      <button class="filter" data-filter="completed" aria-pressed="false">Completed</button>
     </div>
-    <div class="cards">
-      <article class="card" data-type="international">
-        <span class="pill">INTERNATIONAL</span>
-        <h3>International cricket</h3>
-        <p>Find match schedules, teams, venues and results when reliable fixture data is connected.</p>
-        <span class="note">Fixtures feed not connected</span>
+
+    <div class="match-grid" id="matchGrid">
+      <article class="match-card" data-status="live">
+        <div class="card-top">
+          <span class="tournament">INTERNATIONAL · DEMO</span>
+          <span class="tag tag-demo">SAMPLE</span>
+        </div>
+        <div class="teams">
+          <div class="team">
+            <span class="flag">🇮🇳</span>
+            <div><div class="team-name">India</div><div class="team-code">IND</div></div>
+            <div class="score">180/5<small>20 overs · sample</small></div>
+          </div>
+          <div class="team">
+            <span class="flag">🇵🇰</span>
+            <div><div class="team-name">Pakistan</div><div class="team-code">PAK</div></div>
+            <div class="score">—<small>Not played</small></div>
+          </div>
+        </div>
+        <div class="card-foot"><span>Example T20 card</span><span>Not a real score</span></div>
       </article>
-      <article class="card" data-type="league">
-        <span class="pill">LEAGUES</span>
-        <h3>Popular cricket leagues</h3>
-        <p>Follow league fixtures, match summaries and scorecards from supported competitions.</p>
-        <span class="note">Fixtures feed not connected</span>
+
+      <article class="match-card" data-status="upcoming">
+        <div class="card-top">
+          <span class="tournament">INTERNATIONAL · DEMO</span>
+          <span class="tag tag-demo">SAMPLE</span>
+        </div>
+        <div class="teams">
+          <div class="team">
+            <span class="flag">🇦🇺</span>
+            <div><div class="team-name">Australia</div><div class="team-code">AUS</div></div>
+          </div>
+          <div class="team">
+            <span class="flag">🏴</span>
+            <div><div class="team-name">England</div><div class="team-code">ENG</div></div>
+          </div>
+        </div>
+        <div class="card-foot"><span>Example ODI card</span><span>Fixture unconfirmed</span></div>
+      </article>
+
+      <article class="match-card" data-status="completed">
+        <div class="card-top">
+          <span class="tournament">DOMESTIC · DEMO</span>
+          <span class="tag tag-demo">SAMPLE</span>
+        </div>
+        <div class="teams">
+          <div class="team">
+            <span class="flag">🔵</span>
+            <div><div class="team-name">Blue XI</div><div class="team-code">BLU</div></div>
+            <div class="score">156/7<small>sample score</small></div>
+          </div>
+          <div class="team">
+            <span class="flag">🟡</span>
+            <div><div class="team-name">Gold XI</div><div class="team-code">GLD</div></div>
+            <div class="score">159/4<small>sample score</small></div>
+          </div>
+        </div>
+        <div class="card-foot"><span>Example result</span><span>Not a real match</span></div>
       </article>
     </div>
+    <p class="empty" id="emptyMessage">No sample cards in this category yet.</p>
   </section>
 
   <section class="section" id="fixtures">
-    <div class="section-head"><h2>Upcoming Fixtures</h2></div>
-    <div class="card">
-      <h3>Find your next match</h3>
-      <p>Fixture dates and start times will appear here after a reliable cricket schedule source is connected.</p>
-      <p class="note">No fixture dates are being invented or presented as confirmed.</p>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Plan your cricket time</div>
+        <h2>Fixtures & Scorecard</h2>
+        <p class="sub">Preview sections for future verified match information.</p>
+      </div>
     </div>
-  </section>
 
-  <section class="section" id="scorecard">
-    <div class="section-head"><h2>Scorecard Preview</h2></div>
-    <div class="card">
-      <p>Batting and bowling statistics will be displayed when match data is available.</p>
-      <div style="overflow-x:auto">
-        <table class="score-table">
-          <thead><tr><th>Player</th><th>Runs</th><th>Balls</th><th>Status</th></tr></thead>
-          <tbody><tr><td colspan="4" class="note">No match scorecard loaded yet.</td></tr></tbody>
-        </table>
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">
+          <h3>📅 Fixture Preview</h3>
+          <span class="tag tag-demo">SAMPLES</span>
+        </div>
+        <div class="fixture">
+          <div class="fixture-info">
+            <strong>India vs Pakistan</strong>
+            <small>Example international T20</small>
+          </div>
+          <div class="fixture-time">T20<div class="mini-label">Demo only</div></div>
+        </div>
+        <div class="fixture">
+          <div class="fixture-info">
+            <strong>Australia vs England</strong>
+            <small>Example ODI match</small>
+          </div>
+          <div class="fixture-time">ODI<div class="mini-label">Demo only</div></div>
+        </div>
+        <div class="fixture">
+          <div class="fixture-info">
+            <strong>Blue XI vs Gold XI</strong>
+            <small>Example domestic match</small>
+          </div>
+          <div class="fixture-time">T20<div class="mini-label">Demo only</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <h3>📊 Scorecard Preview</h3>
+          <span class="tag tag-demo">EXAMPLE</span>
+        </div>
+        <div class="score-preview">
+          <div class="score-line"><span>Team</span><span>Blue XI</span></div>
+          <div class="score-line"><span>Total</span><span>156/7</span></div>
+          <div class="score-line"><span>Overs</span><span>20.0</span></div>
+          <div class="score-line"><span>Top scorer</span><span>Example batter</span></div>
+          <p class="score-note">
+            This is a design preview with invented sample values. It is not
+            connected to a real match. Verified batting and bowling details
+            can be displayed here after live data is integrated.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section" id="about">
-    <div class="card">
-      <h2>About CricCard</h2>
-      <p>CricCard is an independent cricket information project built for fans who want a clear, mobile-friendly match centre.</p>
-      <p class="note">CricCard is an independent project and is not affiliated with any cricket board or team.</p>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Built for cricket fans</div>
+        <h2>Why CricCard?</h2>
+        <p class="sub">A simple foundation for a more useful cricket destination.</p>
+      </div>
+    </div>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Quick match overview</h3>
+        <p>Scan a clean card layout designed to make teams and match information easy to find.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>Made for mobile</h3>
+        <p>Responsive cards and simple navigation designed for smaller screens.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3>Clear information</h3>
+        <p>Sample information is labelled honestly, with space for verified scores and fixtures later.</p>
+      </article>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <strong style="color:white">CricCard 🏏</strong><br>
-    Cricket information, made simple.<br>
-    Scores and fixtures will be added when a suitable data source is configured.
-    <p>© <span id="year"></span> CricCard</p>
+<footer>
+  <div class="wrap footer-row">
+    <div>
+      <a class="brand" href="#"><span class="logo">🏏</span>Cric<span>Card</span></a>
+      <p>A cricket hub in progress. Independently created project.</p>
+    </div>
+    <div>
+      <p>Scores and fixtures shown here are illustrative samples.</p>
+      <p>© <span id="year"></span> CricCard</p>
+    </div>
   </div>
 </footer>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  document.querySelectorAll("[data-filter]").forEach(function(button) {
-    button.addEventListener("click", function() {
-      document.querySelectorAll("[data-filter]").forEach(function(item) {
-        item.classList.remove("active");
-      });
-      button.classList.add("active");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const matchCards = document.querySelectorAll(".match-card");
+const emptyMessage = document.getElementById("emptyMessage");
 
-      document.querySelectorAll("[data-type]").forEach(function(card) {
-        card.classList.toggle(
-          "hidden",
-          button.dataset.filter !== "all" &&
-          card.dataset.type !== button.dataset.filter
-        );
-      });
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selected = button.dataset.filter;
+    let visibleCount = 0;
+
+    filterButtons.forEach(item => {
+      const active = item === button;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
     });
+
+    matchCards.forEach(card => {
+      const show = selected === "all" || card.dataset.status === selected;
+      card.hidden = !show;
+      if (show) visibleCount++;
+    });
+
+    emptyMessage.style.display = visibleCount ? "none" : "block";
   });
+});
 </script>
 </body>
   </html>
