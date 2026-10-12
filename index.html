@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071510">
+<meta name="description" content="Explore cricket match cards, sample scorecards and fixtures on CricCard, your cricket match centre.">
+<meta name="google-site-verification" content="cZJ3co6WBtHTHWCtKc1SK1ISJc1H_taSV3ieMicu2f8">
+<title>CricCard — Your Cricket Match Centre</title>
+<style>
+:root{--bg:#071510;--panel:#0e2119;--panel2:#142b20;--green:#b9ff66;--text:#f4f8f2;--muted:#9bb0a1;--border:#294235}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);background:radial-gradient(ellipse at 85% 0%,#173c2b,transparent 38%),var(--bg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,.match-card:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+.wrap{width:min(1120px,92%);margin:auto}
+header{background:#071510;border-bottom:1px solid var(--border)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:22px}
+.brand-name span{color:var(--green)}
+.logo{display:grid;place-items:center;width:41px;height:41px;border-radius:13px;background:var(--green);color:#102015;font-size:22px}
+.navlinks{display:flex;gap:20px;color:var(--muted);font-size:13px}.navlinks a:hover{color:var(--green)}
+.hero{padding:48px 0 28px}
+.eyebrow{color:var(--green);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+h1{margin:13px 0;font-size:clamp(38px,7vw,66px);line-height:1.04;letter-spacing:-2px}h1 span{color:var(--green)}
+.lead{max-width:620px;color:var(--muted);font-size:15px;line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border:1px solid var(--border);border-radius:11px;font-weight:800;font-size:13px}
+.btn-primary{background:var(--green);color:#102015;border-color:var(--green)}.btn-secondary{background:var(--panel)}.btn:hover{filter:brightness(1.08)}
+.notice{margin:12px 0 28px;padding:14px;border:1px solid #655027;border-radius:13px;background:#211e12;color:#e9d9b1;font-size:12px;line-height:1.7}.notice strong{color:#ffdc87}
+.section{padding:22px 0 30px}
+.section-head{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+h2{margin:5px 0;font-size:clamp(23px,4vw,30px);letter-spacing:-.6px}.sub{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+.demo-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #6d5125;border-radius:999px;background:#382b15;color:#ffdc87;font-size:10px;font-weight:900}
+.dot{width:7px;height:7px;border-radius:50%;background:#ffca64}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:17px}
+.filter{padding:9px 13px;border:1px solid var(--border);border-radius:999px;background:var(--panel);color:var(--muted);font-size:12px;font-weight:800}
+.filter.active{background:var(--green);border-color:var(--green);color:#102015}
+.match-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.match-card{min-width:0;padding:18px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,#142b20,#0c1c15);cursor:pointer;transition:transform .18s,border-color .18s}
+.match-card:hover{transform:translateY(-3px);border-color:#64864e}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.tournament{color:var(--muted);font-size:10px;font-weight:800}
+.tag{padding:5px 7px;border-radius:6px;background:#27372c;color:#dce9dd;font-size:9px;font-weight:900}.tag-demo{background:#382b15;color:#ffdc87}
+.teams{display:grid;gap:16px;margin:22px 0}.team{display:flex;align-items:center;gap:10px;min-width:0}
+.flag{display:grid;place-items:center;flex-shrink:0;width:40px;height:40px;border:1px solid #365340;border-radius:12px;background:#20392b;font-size:22px}
+.team-info{min-width:0}.team-name{font-size:14px;font-weight:850}.team-code{margin-top:3px;color:var(--muted);font-size:10px}
+.score{margin-left:auto;text-align:right;font-size:13px;font-weight:850}.score small{display:block;margin-top:4px;color:var(--muted);font-size:9px;font-weight:500}
+.card-foot{display:flex;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:10px}
+.empty{display:none;padding:22px;border:1px dashed var(--border);border-radius:13px;color:var(--muted);text-align:center}
+.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.panel{min-width:0;padding:19px;border:1px solid var(--border);border-radius:17px;background:var(--panel)}
+.panel-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.panel-title h3{margin:0;font-size:16px}
+.fixture{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid var(--border)}.fixture:last-child{border-bottom:0}
+.fixture-info strong{font-size:13px}.fixture-info small{display:block;margin-top:5px;color:var(--muted);font-size:11px;line-height:1.5}
+.fixture-time{flex-shrink:0;text-align:right;color:var(--green);font-size:11px;font-weight:850}.mini-label{margin-top:5px;color:var(--muted);font-size:10px}
+.score-preview{display:grid;gap:10px}.score-line{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:10px;background:var(--panel2);font-size:12px}.score-line span:last-child{text-align:right;font-weight:800}
+.score-note{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.feature{padding:18px;border:1px solid var(--border);border-radius:15px;background:var(--panel)}
+.feature-icon{font-size:25px}.feature h3{margin:12px 0 7px;font-size:14px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+footer{margin-top:22px;padding:25px 0 32px;border-top:1px solid var(--border)}.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer p{margin:6px 0;color:var(--muted);font-size:11px;line-height:1.7}
+[hidden]{display:none!important}
+.modal-backdrop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.82)}
+.modal-backdrop.open{display:flex}
+.modal{width:min(480px,100%);max-height:85vh;overflow-y:auto;padding:22px;border:1px solid #365340;border-radius:20px;background:#0e2119;box-shadow:0 20px 70px #0009}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal-head h2{margin:0;font-size:23px}
+.modal-close{width:40px;height:40px;border:1px solid #365340;border-radius:10px;background:#20392b;color:white;font-size:24px}
+.modal-demo{display:inline-block;margin:15px 0 8px;padding:7px 10px;border-radius:8px;background:#382b15;color:#ffdc87;font-size:10px;font-weight:900}
+.modal-teams{display:grid;gap:10px;margin:14px 0 20px}.modal-team{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border-radius:12px;background:#142b20}
+.modal-team strong{display:block;font-size:13px}.modal-team small{display:block;margin-top:4px;color:var(--muted);font-size:10px}
+.modal-note{color:var(--muted);font-size:12px;line-height:1.7}
+@media(max-width:800px){.match-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.navlinks{gap:13px}}
+@media(max-width:540px){.nav{min-height:64px}.brand{font-size:20px}.logo{width:36px;height:36px}.navlinks{gap:12px;font-size:11px}.navlinks a:nth-child(3){display:none}.hero{padding-top:34px}h1{letter-spacing:-1.3px}.match-grid,.feature-grid{grid-template-columns:1fr}.match-card{padding:17px}.section{padding-top:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="CricCard home"><span class="logo">🏏</span><span class="brand-name">Cric<span>Card</span></span></a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#matches">Matches</a><a href="#fixtures">Fixtures</a><a href="#about">About</a></nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div class="eyebrow">Your cricket companion</div>
+    <h1>Every match.<br>One <span>destination.</span></h1>
+    <p class="lead">Explore cricket match cards, scorecard previews and fixture information in one clean, mobile-friendly cricket hub.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#matches">🏏 Explore matches →</a><a class="btn btn-secondary" href="#fixtures">View fixtures ↓</a></div>
+  </section>
+
+  <div class="notice"><strong>⚠ DEMO MODE — SCORES ARE NOT LIVE.</strong> All match scores and fixtures on this version are illustrative examples, not real-time results or confirmed fixtures. Live data will only be shown after a reliable cricket data source is connected.</div>
+
+  <section class="section" id="matches">
+    <div class="section-head"><div><div class="eyebrow">Match centre</div><h2>Popular Matches</h2><p class="sub">Tap any sample card to explore its details.</p></div><span class="demo-pill"><span class="dot"></span> DEMO DATA</span></div>
+    <div class="filters" aria-label="Filter matches">
+      <button class="filter active" data-filter="all" aria-pressed="true">All matches</button>
+      <button class="filter" data-filter="live" aria-pressed="false">Live</button>
+      <button class="filter" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+      <button class="filter" data-filter="completed" aria-pressed="false">Completed</button>
+    </div>
+    <div class="match-grid" id="matchGrid">
+      <article class="match-card" data-status="live" tabindex="0" role="button" aria-label="View sample India versus Pakistan details">
+        <div class="card-top"><span class="tournament">INTERNATIONAL · DEMO</span><span class="tag tag-demo">SAMPLE</span></div>
+        <div class="teams">
+          <div class="team"><span class="flag">🇮🇳</span><div class="team-info"><div class="team-name">India</div><div class="team-code">IND</div></div><div class="score">180/5<small>20 overs · sample</small></div></div>
+          <div class="team"><span class="flag">🇵🇰</span><div class="team-info"><div class="team-name">Pakistan</div><div class="team-code">PAK</div></div><div class="score">—<small>Not played</small></div></div>
+        </div>
+        <div class="card-foot"><span>Example T20 card</span><span>Not a real score</span></div>
+      </article>
+      <article class="match-card" data-status="upcoming" tabindex="0" role="button" aria-label="View sample Australia versus England details">
+        <div class="card-top"><span class="tournament">INTERNATIONAL · DEMO</span><span class="tag tag-demo">SAMPLE</span></div>
+        <div class="teams">
+          <div class="team"><span class="flag">🇦🇺</span><div class="team-info"><div class="team-name">Australia</div><div class="team-code">AUS</div></div></div>
+          <div class="team"><span class="flag">🏴</span><div class="team-info"><div class="team-name">England</div><div class="team-code">ENG</div></div></div>
+        </div>
+        <div class="card-foot"><span>Example ODI card</span><span>Fixture unconfirmed</span></div>
+      </article>
+      <article class="match-card" data-status="completed" tabindex="0" role="button" aria-label="View sample Blue XI versus Gold XI details">
+        <div class="card-top"><span class="tournament">DOMESTIC · DEMO</span><span class="tag tag-demo">SAMPLE</span></div>
+        <div class="teams">
+          <div class="team"><span class="flag">🔵</span><div class="team-info"><div class="team-name">Blue XI</div><div class="team-code">BLU</div></div><div class="score">156/7<small>sample score</small></div></div>
+          <div class="team"><span class="flag">🟡</span><div class="team-info"><div class="team-name">Gold XI</div><div class="team-code">GLD</div></div><div class="score">159/4<small>sample score</small></div></div>
+        </div>
+        <div class="card-foot"><span>Example result</span><span>Not a real match</span></div>
+      </article>
+    </div>
+    <p class="empty" id="emptyMessage">No sample cards in this category yet.</p>
+  </section>
+
+  <section class="section" id="fixtures">
+    <div class="section-head"><div><div class="eyebrow">Plan your cricket time</div><h2>Fixtures &amp; Scorecard</h2><p class="sub">Preview sections for future verified match information.</p></div></div>
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title"><h3>📅 Fixture Preview</h3><span class="tag tag-demo">SAMPLES</span></div>
+        <div class="fixture"><div class="fixture-info"><strong>India vs Pakistan</strong><small>Example international T20</small></div><div class="fixture-time">T20<div class="mini-label">Demo only</div></div></div>
+        <div class="fixture"><div class="fixture-info"><strong>Australia vs England</strong><small>Example ODI match</small></div><div class="fixture-time">ODI<div class="mini-label">Demo only</div></div></div>
+        <div class="fixture"><div class="fixture-info"><strong>Blue XI vs Gold XI</strong><small>Example domestic match</small></div><div class="fixture-time">T20<div class="mini-label">Demo only</div></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><h3>📊 Scorecard Preview</h3><span class="tag tag-demo">EXAMPLE</span></div>
+        <div class="score-preview">
+          <div class="score-line"><span>Team</span><span>Blue XI</span></div><div class="score-line"><span>Total</span><span>156/7</span></div><div class="score-line"><span>Overs</span><span>20.0</span></div><div class="score-line"><span>Top scorer</span><span>Example batter</span></div>
+          <p class="score-note">These are invented sample values, not a real match scorecard. Verified batting and bowling information can be displayed here after a live data source is connected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head"><div><div class="eyebrow">Built for cricket fans</div><h2>Why CricCard?</h2><p class="sub">A simple foundation for a more useful cricket destination.</p></div></div>
+    <div class="feature-grid">
+      <article class="feature"><div class="feature-icon">⚡</div><h3>Quick match overview</h3><p>Scan clear cards designed to make teams and match information easy to find.</p></article>
+      <article class="feature"><div class="feature-icon">📱</div><h3>Made for mobile</h3><p>Responsive cards and simple navigation designed for smaller screens.</p></article>
+      <article class="feature"><div class="feature-icon">🎯</div><h3>Clear information</h3><p>Sample information is labelled honestly, with space for verified scores later.</p></article>
+    </div>
+  </section>
+</main>
+
+<div class="modal-backdrop" id="matchModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-head"><h2 id="modalTitle">Match details</h2><button class="modal-close" id="closeModal" aria-label="Close match details">×</button></div>
+    <span class="modal-demo">DEMO DATA — NOT LIVE</span>
+    <p class="modal-note" id="modalFormat"></p>
+    <div class="modal-teams" id="modalTeams"></div>
+    <h3>Scorecard preview</h3>
+    <div class="score-preview"><div class="score-line"><span>Match status</span><span>Sample only</span></div><div class="score-line"><span>Batting details</span><span>Not connected</span></div><div class="score-line"><span>Bowling details</span><span>Not connected</span></div></div>
+    <p class="modal-note">This is an interactive design preview. Scores and match details are illustrative, not real-time cricket data.</p>
+    <button class="btn btn-primary" id="doneModal">Close details</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div><a class="brand" href="#top"><span class="logo">🏏</span><span class="brand-name">Cric<span>Card</span></span></a><p>An independently created cricket project.</p></div>
+    <div><p>Scores and fixtures shown here are illustrative samples.</p><p>© <span id="year"></span> CricCard</p></div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Match filters */
+const filterButtons = document.querySelectorAll("[data-filter]");
+const matchCards = document.querySelectorAll(".match-card");
+const emptyMessage = document.getElementById("emptyMessage");
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selected = button.dataset.filter;
+    let visibleCount = 0;
+    filterButtons.forEach(item => {
+      const active = item === button;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+    matchCards.forEach(card => {
+      const show = selected === "all" || card.dataset.status === selected;
+      card.hidden = !show;
+      if (show) visibleCount++;
+    });
+    emptyMessage.style.display = visibleCount ? "none" : "block";
+  });
+});
+
+/* Interactive match details */
+const matchModal = document.getElementById("matchModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalFormat = document.getElementById("modalFormat");
+const modalTeams = document.getElementById("modalTeams");
+const closeModalButton = document.getElementById("closeModal");
+let lastFocusedElement = null;
+
+function closeMatchModal() {
+  matchModal.classList.remove("open");
+  matchModal.setAttribute("aria-hidden", "true");
+  if (lastFocusedElement) lastFocusedElement.focus();
+}
+
+function openMatchDetails(card) {
+  lastFocusedElement = card;
+  const names = [...card.querySelectorAll(".team-name")];
+  const scores = [...card.querySelectorAll(".score")];
+  modalTitle.textContent = names.map(team => team.textContent).join(" vs ");
+  modalFormat.textContent = card.querySelector(".tournament")?.textContent || "Example cricket match";
+  modalTeams.replaceChildren();
+
+  names.forEach((team, index) => {
+    const row = document.createElement("div");
+    row.className = "modal-team";
+    const info = document.createElement("div");
+    const name = document.createElement("strong");
+    name.textContent = team.textContent;
+    const note = document.createElement("small");
+    note.textContent = "Illustrative sample";
+    info.append(name, note);
+    const score = document.createElement("strong");
+    score.textContent = scores[index] ? scores[index].innerText.replace(/\s+/g, " ").trim() : "No sample score";
+    row.append(info, score);
+    modalTeams.append(row);
+  });
+
+  matchModal.classList.add("open");
+  matchModal.setAttribute("aria-hidden", "false");
+  closeModalButton.focus();
+}
+
+matchCards.forEach(card => {
+  card.addEventListener("click", () => openMatchDetails(card));
+  card.addEventListener("keydown", event => {
+    if (event.target !== card) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openMatchDetails(card);
+    }
+  });
+});
+
+closeModalButton.addEventListener("click", closeMatchModal);
+document.getElementById("doneModal").addEventListener("click", closeMatchModal);
+matchModal.addEventListener("click", event => {
+  if (event.target === matchModal) closeMatchModal();
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && matchModal.classList.contains("open")) closeMatchModal();
+});
+</script>
+</body>
+</html>
