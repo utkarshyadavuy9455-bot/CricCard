@@ -9,6 +9,44 @@
 <meta name="google-site-verification" content="cZJ3co6WBtHTHWCtKc1SK1ISJc1H_taSV3ieMicu2f8">
 <title>CricCard — Your Cricket Match Centre</title>
 
+
+.match-card { cursor:pointer; }
+.match-card:focus-visible { outline:2px solid var(--green); outline-offset:4px; }
+
+.modal-backdrop {
+  position:fixed;inset:0;z-index:1000;
+  display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(0,0,0,.78);
+}
+.modal-backdrop.open { display:flex; }
+.modal {
+  width:min(480px,100%);max-height:85vh;overflow-y:auto;
+  padding:23px;border-radius:20px;
+  background:#0e2119;border:1px solid #365340;
+  box-shadow:0 20px 70px #0009;
+}
+.modal-head {
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.modal-head h2 { font-size:23px; }
+.modal-close {
+  background:#20392b;color:white;border:1px solid #365340;
+  border-radius:10px;width:40px;height:40px;font-size:22px;
+}
+.modal-demo {
+  display:inline-block;margin:16px 0 8px;padding:7px 10px;
+  background:#382b15;color:#ffdc87;border-radius:8px;
+  font-size:11px;font-weight:900;
+}
+.modal-teams { display:grid;gap:12px;margin:15px 0; }
+.modal-team {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;padding:14px;background:#13291f;border-radius:12px;
+}
+.modal-team strong { display:block; }
+.modal-team small { display:block;color:#9bb0a1;margin-top:5px; }
+.modal-note { color:#9bb0a1;font-size:13px;line-height:1.7; }
+  
 <style>
 :root {
   --bg:#071510;
@@ -386,6 +424,32 @@ footer a { color:var(--green); }
   </section>
 </main>
 
+
+<div class="modal-backdrop" id="matchModal" role="dialog"
+     aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Match details</h2>
+      <button class="modal-close" id="closeModal"
+              aria-label="Close match details">×</button>
+    </div>
+    <span class="modal-demo">DEMO DATA — NOT LIVE</span>
+    <p class="modal-note" id="modalFormat"></p>
+    <div class="modal-teams" id="modalTeams"></div>
+    <h3>Scorecard preview</h3>
+    <div class="score-preview">
+      <div class="score-line"><span>Match status</span><span>Sample only</span></div>
+      <div class="score-line"><span>Batting details</span><span>Not connected</span></div>
+      <div class="score-line"><span>Bowling details</span><span>Not connected</span></div>
+    </div>
+    <p class="modal-note">
+      This is an interactive design preview. Scores and match details are
+      illustrative and are not real-time cricket data.
+    </p>
+    <button class="btn btn-primary" id="doneModal">Close details</button>
+  </div>
+</div>
+  
 <footer>
   <div class="wrap footer-row">
     <div>
@@ -426,6 +490,79 @@ filterButtons.forEach(button => {
     emptyMessage.style.display = visibleCount ? "none" : "block";
   });
 });
+
+const matchModal = document.getElementById("matchModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalFormat = document.getElementById("modalFormat");
+const modalTeams = document.getElementById("modalTeams");
+const closeModal = document.getElementById("closeModal");
+
+function closeMatchModal() {
+  matchModal.classList.remove("open");
+}
+
+document.querySelectorAll(".match-card").forEach(card => {
+  card.tabIndex = 0;
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", "View sample match details");
+
+  function openMatchDetails() {
+    const names = [...card.querySelectorAll(".team-name")];
+    const scores = [...card.querySelectorAll(".score")];
+
+    modalTitle.textContent = names.map(t => t.textContent).join(" vs ");
+    modalFormat.textContent =
+      card.querySelector(".tournament")?.textContent ||
+      "Example cricket match";
+
+    modalTeams.replaceChildren();
+
+    names.forEach((team, index) => {
+      const row = document.createElement("div");
+      row.className = "modal-team";
+
+      const info = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = team.textContent;
+
+      const note = document.createElement("small");
+      note.textContent = "Illustrative sample";
+
+      info.append(name, note);
+
+      const score = document.createElement("strong");
+      score.textContent = scores[index]?.textContent.trim() || "No score";
+
+      row.append(info, score);
+      modalTeams.append(row);
+    });
+
+    matchModal.classList.add("open");
+    closeModal.focus();
+  }
+
+  card.addEventListener("click", openMatchDetails);
+
+  card.addEventListener("keydown", event => {
+    if (event.target !== card) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openMatchDetails();
+    }
+  });
+});
+
+closeModal.addEventListener("click", closeMatchModal);
+document.getElementById("doneModal").addEventListener("click", closeMatchModal);
+
+matchModal.addEventListener("click", event => {
+  if (event.target === matchModal) closeMatchModal();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeMatchModal();
+});
+  
 </script>
 </body>
   </html>
